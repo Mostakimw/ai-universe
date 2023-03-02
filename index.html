@@ -21,9 +21,16 @@
             <div id="card-container" class="grid grid-cols-3 gap-6">
 
             </div>
+
             <div class="flex justify-center">
-                <button class="btn bg-red-500 hover:bg-red-600 border-none mt-8 mb-6 mx-auto">Show All</button>
+                <button id="show-all-btn"
+                    class="btn bg-red-500 hover:bg-red-600 border-none mt-8 mb-6 mx-auto hidden">Show
+                    All</button>
             </div>
+            <div class="flex justify-center items-center">
+                <progress id="loading" class="progress w-56 hidden"></progress>
+            </div>
+
 
         </section>
         <!--! card container end  -->
