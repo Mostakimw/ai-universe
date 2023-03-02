@@ -7,10 +7,13 @@ const fetchAllData = () => {
 };
 //! function for display all data
 const displayLoadData = (data) => {
-  const element = data.tools[10];
-  console.log(element);
+  //   const element = data.tools[10];
+  //   console.log(element);
   const cardContainer = document.getElementById("card-container");
-  data.tools.forEach((singleData) => {
+  let allData = data.tools;
+  console.log(allData);
+  allData = allData.slice(0, 6);
+  allData.forEach((singleData) => {
     cardContainer.innerHTML += `
     <div class="card w-full bg-red-300 p-6 shadow-xl border">
         <div>
