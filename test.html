@@ -5,25 +5,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AI-Universe-Hub</title>
+    <!-- daisyui cdn  -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- fontawesome cdn  -->
+    <script src="https://kit.fontawesome.com/8d318c79f1.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
-    <!-- The button to open modal -->
-    <label for="my-modal-3" class="btn">open modal</label>
+<body onload="fetchAllData()">
+    <header class="text-center mt-6">
+        <h1 class="text-4xl font-bold">AI Universe Hub</h1>
+        <button class="btn bg-red-500 hover:bg-red-600 border-none mt-4">Sort By Date</button>
+    </header>
+    <main>
+        <!--! card container start  -->
+        <section class="mt-4 w-[90%] mx-auto">
+            <div id="card-container" class="grid grid-cols-3 gap-6">
 
-    <!-- Put this part before </body> tag -->
-    <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-    <div class="modal">
-        <div class="modal-box relative">
-            <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-lg font-bold">Congratulations random Internet user!</h3>
-            <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!
-            </p>
-        </div>
-    </div>
+            </div>
+
+            <div class="flex justify-center">
+                <button id="show-all-btn"
+                    class="btn bg-red-500 hover:bg-red-600 border-none mt-8 mb-6 mx-auto hidden">Show
+                    All</button>
+            </div>
+            <div class="flex justify-center items-center">
+                <progress id="loading" class="progress w-56 hidden"></progress>
+            </div>
+
+
+        </section>
+        <!--! card container end  -->
+
+        <section id="details-modal">
+            <!-- The button to open modal -->
+
+
+
+        </section>
+    </main>
+
+    <!-- script  -->
+    <script src="./test.js"></script>
 </body>
 
 </html>
