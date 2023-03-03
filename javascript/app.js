@@ -94,6 +94,7 @@ const loadSingleData = async (id) => {
 };
 //! single data showing when modal opened
 const displaySingleData = (data) => {
+  console.log(data);
   feature_name = data["features"]["1"]["feature_name"];
   const details = document.getElementById("details-modal");
   details.innerHTML = `
@@ -104,9 +105,15 @@ const displaySingleData = (data) => {
               <h2 class="text-2xl font-semibold">${data.description}</h2>
             </div>
             <div class="flex justify-between max-md:flex-col max-md:items-center my-5 gap-4 mx-auto">
-                <p class="w-48 bg-gray-50 text-[#03A30A] p-2 text-xl font-bold rounded">${data.pricing[0].price} <br>${data.pricing[0].plan} </p>
-                <p class=" w-48 bg-gray-50 text-[#F28927] p-2  text-xl font-bold rounded">${data.pricing[1].price}<br>${data.pricing[1].plan}</p>
-                <p class="w-48 bg-gray-50	text-[#EB5757] p-2  text-xl font-bold rounded">${data.pricing[2].price}<br>${data.pricing[2].plan}</p>
+                <p class="bg-gray-50 text-[#03A30A] p-2 text-xl font-bold rounded">${
+                  data.pricing[0].price
+                } <br>${data.pricing[0].plan} </p>
+                <p class="bg-gray-50 text-[#F28927] p-2  text-xl font-bold rounded">${
+                  data.pricing[1].price
+                }<br>${data.pricing[1].plan}</p>
+                <p class="bg-gray-50	text-[#EB5757] p-2  text-xl font-bold rounded">${
+                  data.pricing[2].price
+                }<br>${data.pricing[2].plan}</p>
             </div>
             <div class="md:flex justify-between gap-5">
                 <div>
@@ -123,9 +130,16 @@ const displaySingleData = (data) => {
           </div>
           <div class="w-full">
             
-            <img src=${data.image_link[0]} class="rounded-xl" />
+            <div class="relative">
+              <img src=${data.image_link[0]} class="rounded-xl"/>
+              <p class="bg-red-500 p-2 max-w-fit text-white rounded-md absolute right-2 top-2">${
+                data.accuracy.score * 100
+              }% accuracy</p>
+            </div>
             <div class="text-center mt-5 px-4">
-              <h3 class="text-3xl font-semibold">${data.input_output_examples[0].input}</h3>
+              <h3 class="text-3xl font-semibold">${
+                data.input_output_examples[0].input
+              }</h3>
               <p class="mt-2">${data.input_output_examples[0].output}</p>
             </div>
             
