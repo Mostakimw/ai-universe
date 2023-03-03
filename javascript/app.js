@@ -24,15 +24,11 @@ const showAllData = () => {
   loadMoreButton.style.display = "none";
 };
 
-// const showDetailsBtn = document.getElementById("show-details-btn");
 //! function for display all data
 const displayLoadData = (allAis) => {
   const cardContainer = document.getElementById("card-container");
-  // let allData = data;
   console.log(allAis[0]);
-  // allData = allData.slice(0, 6);
   cardContainer.innerHTML = "";
-
   allAis.forEach((singleData) => {
     cardContainer.innerHTML += `
       <div class="card w-full bg-base-100 p-8 shadow-xl border mb-6">
@@ -61,7 +57,7 @@ const displayLoadData = (allAis) => {
   });
 };
 
-//! sort by date
+//! sort by date fetch function
 
 const sortByDate = () => {
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
@@ -73,6 +69,7 @@ const sortByDate = () => {
       loadingDisplay(false);
     });
 };
+//! display sort by date
 const displaySortByDate = (data) => {
   // console.log(data);
   custom = (a, b) => {
@@ -85,6 +82,8 @@ const displaySortByDate = (data) => {
   };
   data.sort(custom);
   displayLoadData(data);
+  const loadMoreButton = document.getElementById("show-all-btn");
+  loadMoreButton.style.display = "none";
 };
 
 //! single data details fetch
@@ -94,12 +93,9 @@ const loadSingleData = async (id) => {
   const data = await res.json();
   displaySingleData(data.data);
 };
-
+//! single data showing when modal opened
 const displaySingleData = (data) => {
-  console.log(data);
   feature_name = data["features"]["1"]["feature_name"];
-  console.log(feature_name);
-
   const details = document.getElementById("details-modal");
   details.innerHTML = `
       <label for="my-modal-3" class="btn btn-sm btn-circle bg-red-400 border-none text-white absolute right-2 top-2">✕</label>
