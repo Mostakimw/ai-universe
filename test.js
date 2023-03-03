@@ -57,45 +57,7 @@ const displaySingleData = (data) => {
   console.log(data);
   const details = document.getElementById("details-modal");
   details.innerHTML = `
-      <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-      <div class="grid grid-cols-2 bg-red-300 p-6">
-        <div class="w-full px-4 bg-black">
-            <div>
-                <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur magni culpa placeat ipsam ad
-                    explicabo repellat, eaque temporibus reprehenderit. Est?</h2>
-            </div>
-            <div class="flex justify-between items-center">
-                <p>free of cost</p>
-                <p>free of cost</p>
-                <p>free of cost</p>
-            </div>
-            <div class="flex justify-between items-center ">
-                <div>
-                    <h3>header</h3>
-                    <p>helo</p>
-                    <p>helo</p>
-                    <p>helo</p>
-                </div>
-                <div>
-                    <h3>header</h3>
-                    <p>helo</p>
-                    <p>helo</p>
-                    <p>helo</p>
-                </div>
-            </div>
-        </div>
-        <div class="w-full">
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur sapiente cumque incidunt assumenda
-                error? Odio, maxime. Aliquid impedit, sit exercitationem architecto amet deleniti ut perferendis
-                consectetur eos delectus tenetur placeat ullam omnis dicta ipsa accusamus molestiae cumque odio
-                excepturi cum sunt nemo. Reprehenderit possimus tenetur perferendis aperiam dolore dolores quibusdam
-                fugiat voluptatem non? Temporibus aspernatur tempora vel quaerat beatae eos dicta laboriosam nihil quae
-                culpa voluptas eaque modi deleniti perspiciatis expedita, atque, iure quasi optio nemo. Ex, quas eaque
-                aut corporis deleniti perferendis nam pariatur fugiat, vel sequi eos? Corrupti mollitia a maiores odit,
-                fugit porro qui harum. Reiciendis enim quisquam earum odit repudiandae exercitationem odio autem tempora
-                nam d</h1>
-        </div>
-    </div>
+      
         
     `;
 };

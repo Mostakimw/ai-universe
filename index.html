@@ -12,6 +12,12 @@
     <!-- fontawesome cdn  -->
     <script src="https://kit.fontawesome.com/8d318c79f1.js" crossorigin="anonymous"></script>
 </head>
+<style>
+    .custom-modal-width {
+        width: 60% !important;
+        max-height: calc(100vh-5rem);
+    }
+</style>
 
 <body onload="fetchAllData()">
     <header class="text-center mt-6">
@@ -21,7 +27,7 @@
     <main>
         <!--! card container start  -->
         <section class="mt-4 w-[90%] mx-auto">
-            <div id="card-container" class="grid grid-cols-3 gap-6">
+            <div id="card-container" class="md:grid grid-cols-3 gap-6">
 
             </div>
 
@@ -41,7 +47,7 @@
         <section>
             <input type="checkbox" id="my-modal-3" class="modal-toggle" />
             <div class="modal">
-                <div id="details-modal" class="w-[60%] custom-modal-width relative">
+                <div id="details-modal" class="custom-modal-width relative">
 
                 </div>
             </div>

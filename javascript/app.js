@@ -15,12 +15,12 @@ const fetchAllData = () => {
 const displayLoadData = (data) => {
   const cardContainer = document.getElementById("card-container");
   let allData = data.tools;
-  console.log(allData[0]);
+  // console.log(allData[0]);
   allData = allData.slice(0, 6);
 
   allData.forEach((singleData, index) => {
     cardContainer.innerHTML += `
-      <div class="card w-full bg-base-100 p-8 shadow-xl border">
+      <div class="card w-full bg-base-100 p-8 shadow-xl border mb-6">
           <div>
               <img src=${singleData.image} class="rounded-xl h-[260px]" />
           </div>
@@ -45,22 +45,6 @@ const displayLoadData = (data) => {
     `;
   });
 };
-// const showDetails = () => {
-//   console.log(9);
-//   const details = document.getElementById("details-modal");
-//   details.innerHTML = `
-//           <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-//           <div class="modal">
-//               <div class="modal-box relative">
-//                   <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-//                   <h3 class="text-lg font-bold">Congratulations random Internet user!</h3>
-//                   <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia
-//                       for free!</p>
-//               </div>
-//           </div>
-
-//       `;
-// };
 
 //! single data details fetch
 const loadSingleData = async (id) => {
@@ -71,48 +55,40 @@ const loadSingleData = async (id) => {
 };
 
 const displaySingleData = (data) => {
-  console.log(data.id);
+  console.log(data);
+  console.log(data.pricing[0]);
   const details = document.getElementById("details-modal");
   details.innerHTML = `
-      <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-      <div class="grid grid-cols-2 bg-red-300 p-6 rounded-md">
-        <div class="w-full px-4 bg-black">
+      <label for="my-modal-3" class="btn btn-sm btn-circle bg-red-400 border-none text-white absolute right-[-1.1rem] top-[-1.1rem]">✕</label>
+      <div class="grid grid-cols-2 gap-6 p-6 bg-red-300 rounded-md">
+        <div class="w-full px-4">
             <div>
-                <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur magni culpa placeat ipsam ad
-                    explicabo repellat, eaque temporibus reprehenderit. Est?</h2>
+              <h2 class="text-2xl font-semibold">${data.description}</h2>
             </div>
-            <div class="flex justify-between items-center">
-                <p>free of cost</p>
-                <p>free of cost</p>
-                <p>free of cost</p>
+            <div class="flex justify-between my-5 gap-4">
+                <p class="w-48 bg-white p-2 text-xl font-bold rounded">${data.pricing[0].price}<br>${data.pricing[0].plan} </p>
+                <p class=" w-48 bg-white p-2 text-xl font-bold rounded">${data.pricing[1].price}<br>${data.pricing[1].plan}</p>
+                <p class="w-48 bg-white p-2 text-xl font-bold rounded">${data.pricing[2].price}<br>${data.pricing[2].plan}</p>
             </div>
             <div class="flex justify-between items-center ">
                 <div>
-                    <h3>header</h3>
-                    <p>helo</p>
-                    <p>helo</p>
-                    <p>helo</p>
+                    <h3 class="text-3xl font-semibold">Feature</h3>
+                    
                 </div>
-                <div>
-                    <h3>header</h3>
-                    <p>helo</p>
-                    <p>helo</p>
-                    <p>helo</p>
-                </div>
+              <div>
+                  <h3 class="text-3xl font-semibold">Integrations</h3>
+                  <p class="color-[#585858]">helo</p>
+                  <p>helo</p>
+                  <p>helo</p>
+              </div>
             </div>
-        </div>
-        <div class="w-full">
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur sapiente cumque incidunt assumenda
-                error? Odio, maxime. Aliquid impedit, sit exercitationem architecto amet deleniti ut perferendis
-                consectetur eos delectus tenetur placeat ullam omnis dicta ipsa accusamus molestiae cumque odio
-                excepturi cum sunt nemo. Reprehenderit possimus tenetur perferendis aperiam dolore dolores quibusdam
-                fugiat voluptatem non? Temporibus aspernatur tempora vel quaerat beatae eos dicta laboriosam nihil quae
-                culpa voluptas eaque modi deleniti perspiciatis expedita, atque, iure quasi optio nemo. Ex, quas eaque
-                aut corporis deleniti perferendis nam pariatur fugiat, vel sequi eos? Corrupti mollitia a maiores odit,
-                fugit porro qui harum. Reiciendis enim quisquam earum odit repudiandae exercitationem odio autem tempora
-                nam d</h1>
-        </div>
-    </div>
+          </div>
+          <div class="w-full">
+            
+            <img src=${data.image_link[0]} class="rounded-xl h-[260px]" />
+            
+          </div>
+      </div>
     `;
 };
 
