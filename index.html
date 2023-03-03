@@ -23,7 +23,7 @@
 <body onload="fetchAllData()">
     <header class="text-center mt-6">
         <h1 class="text-4xl font-bold">AI Universe Hub</h1>
-        <button class="btn bg-red-500 hover:bg-red-600 border-none mt-4">Sort By Date</button>
+        <button onclick="sortByDate()" class="btn bg-red-500 hover:bg-red-600 border-none mt-4">Sort By Date</button>
     </header>
     <main>
         <!--! card container start  -->
@@ -46,6 +46,7 @@
         <!--! card container end  -->
 
         <section>
+            <!-- ! modal section  -->
             <input type="checkbox" id="my-modal-3" class="modal-toggle" />
             <div class="modal">
                 <div id="details-modal" class="modal-box w-11/12 max-w-5xl relative">

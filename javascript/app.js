@@ -26,14 +26,14 @@ const showAllData = () => {
 
 // const showDetailsBtn = document.getElementById("show-details-btn");
 //! function for display all data
-const displayLoadData = (allApis) => {
+const displayLoadData = (allAis) => {
   const cardContainer = document.getElementById("card-container");
   // let allData = data;
-  // console.log(allData[0]);
+  console.log(allAis[0]);
   // allData = allData.slice(0, 6);
   cardContainer.innerHTML = "";
 
-  allApis.forEach((singleData, index) => {
+  allAis.forEach((singleData) => {
     cardContainer.innerHTML += `
       <div class="card w-full bg-base-100 p-8 shadow-xl border mb-6">
           <div>
@@ -61,6 +61,32 @@ const displayLoadData = (allApis) => {
   });
 };
 
+//! sort by date
+
+const sortByDate = () => {
+  const url = `https://openapi.programming-hero.com/api/ai/tools`;
+  loadingDisplay(true);
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      displaySortByDate(data.data.tools);
+      loadingDisplay(false);
+    });
+};
+const displaySortByDate = (data) => {
+  // console.log(data);
+  custom = (a, b) => {
+    let dateA = new Date(a.published_in);
+    let dateB = new Date(b.published_in);
+    if (dateA < dateB) {
+      return 1;
+    } else if (dateA > dateB) return -1;
+    return 0;
+  };
+  data.sort(custom);
+  displayLoadData(data);
+};
+
 //! single data details fetch
 const loadSingleData = async (id) => {
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
@@ -83,9 +109,15 @@ const displaySingleData = (data) => {
               <h2 class="text-2xl font-semibold">${data.description}</h2>
             </div>
             <div class="flex justify-between max-md:flex-col max-md:items-center my-5 gap-4 mx-auto">
-                <p class="w-48 bg-gray-50	 p-2  text-xl font-bold rounded">${data.pricing[0].price}<br>${data.pricing[0].plan} </p>
-                <p class=" w-48 bg-gray-50	 p-2  text-xl font-bold rounded">${data.pricing[1].price}<br>${data.pricing[1].plan}</p>
-                <p class="w-48 bg-gray-50	 p-2  text-xl font-bold rounded">${data.pricing[2].price}<br>${data.pricing[2].plan}</p>
+                <p class="w-48 bg-gray-50	 p-2  text-xl font-bold rounded">${
+                  data.pricing[0].price && data.pricing[0].plan
+                } </p>
+                <p class=" w-48 bg-gray-50	 p-2  text-xl font-bold rounded">${
+                  data.pricing[1].price
+                }<br>${data.pricing[1].plan}</p>
+                <p class="w-48 bg-gray-50	 p-2  text-xl font-bold rounded">${
+                  data.pricing[2].price
+                }<br>${data.pricing[2].plan}</p>
             </div>
             <div class="flex justify-between items-center ">
                 <div>
@@ -104,7 +136,9 @@ const displaySingleData = (data) => {
             
             <img src=${data.image_link[0]} class="rounded-xl" />
             <div class="text-center mt-5 px-4">
-              <h3 class="text-3xl font-semibold">${data.input_output_examples[0].input}</h3>
+              <h3 class="text-3xl font-semibold">${
+                data.input_output_examples[0].input
+              }</h3>
               <p class="mt-2">${data.input_output_examples[0].output}</p>
             </div>
             
@@ -131,18 +165,24 @@ function displayFeatureNames(data) {
 }
 
 //! display integrations
+//! display integrations
 function displayIntegrationsName(data) {
   let integrationHtml = "";
   let count = 1;
   for (const integration of data.integrations) {
     // const integrationName = integration;
-    checkIntegrations =
-      integration == "null"
-        ? "No integrations"
-        : (integrationHtml += `<p>${count}. ${integration}</p>`);
+    // checkIntegrations =
+    //   integration == "null"
+    //     ? "No integrations"
+    //     : (integrationHtml += `<p>${count}. ${integration}</p>`);
+    if (integration) {
+      integrationHtml += `<p>${count}. ${integration}</p>`;
+    } else {
+      integrationHtml = "No data Found";
+    }
     count++;
   }
-  return checkIntegrations;
+  return integrationHtml;
 }
 
 //! spinner when loading
