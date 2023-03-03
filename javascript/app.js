@@ -5,20 +5,33 @@ const fetchAllData = () => {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      displayLoadData(data.data);
+      displayLoadData(data.data.tools.slice(0, 3));
       loadingDisplay(false);
     });
+};
+const showAllData = () => {
+  const url = `https://openapi.programming-hero.com/api/ai/tools`;
+  loadingDisplay(true);
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      displayLoadData(data.data.tools);
+      loadingDisplay(false);
+    });
+  const loadMoreButton = document.getElementById("show-all-btn");
+  loadMoreButton.style.display = "none";
 };
 
 // const showDetailsBtn = document.getElementById("show-details-btn");
 //! function for display all data
-const displayLoadData = (data) => {
+const displayLoadData = (allApis) => {
   const cardContainer = document.getElementById("card-container");
-  let allData = data.tools;
+  // let allData = data;
   // console.log(allData[0]);
-  allData = allData.slice(0, 6);
+  // allData = allData.slice(0, 6);
+  cardContainer.innerHTML = "";
 
-  allData.forEach((singleData, index) => {
+  allApis.forEach((singleData, index) => {
     cardContainer.innerHTML += `
       <div class="card w-full bg-base-100 p-8 shadow-xl border mb-6">
           <div>
@@ -59,16 +72,16 @@ const displaySingleData = (data) => {
   console.log(data.input_output_examples[0]);
   const details = document.getElementById("details-modal");
   details.innerHTML = `
-      <label for="my-modal-3" class="btn btn-sm btn-circle bg-red-400 border-none text-white absolute right-[-1.1rem] top-[-1.1rem]">✕</label>
-      <div class="grid grid-cols-2 gap-6 p-20 bg-base-100 rounded-md items-center">
-        <div class="w-full p-6 border border-red-500 bg-red-100	rounded-md">
+      <label for="my-modal-3" class="btn btn-sm btn-circle bg-red-400 border-none text-white absolute right-2 top-2">✕</label>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:p-12 bg-base-100 rounded-md items-center">
+        <div class="max-sm:order-last w-full p-6 border border-red-500 bg-red-100	rounded-md mb-6">
             <div>
               <h2 class="text-2xl font-semibold">${data.description}</h2>
             </div>
-            <div class="flex justify-between my-5 gap-4">
-                <p class="w-48 bg-gray-50	 p-2 text-xl font-bold rounded">${data.pricing[0].price}<br>${data.pricing[0].plan} </p>
-                <p class=" w-48 bg-gray-50	 p-2 text-xl font-bold rounded">${data.pricing[1].price}<br>${data.pricing[1].plan}</p>
-                <p class="w-48 bg-gray-50	 p-2 text-xl font-bold rounded">${data.pricing[2].price}<br>${data.pricing[2].plan}</p>
+            <div class="flex justify-between max-md:flex-col max-md:items-center my-5 gap-4 mx-auto">
+                <p class="w-48 bg-gray-50	 p-2  text-xl font-bold rounded">${data.pricing[0].price}<br>${data.pricing[0].plan} </p>
+                <p class=" w-48 bg-gray-50	 p-2  text-xl font-bold rounded">${data.pricing[1].price}<br>${data.pricing[1].plan}</p>
+                <p class="w-48 bg-gray-50	 p-2  text-xl font-bold rounded">${data.pricing[2].price}<br>${data.pricing[2].plan}</p>
             </div>
             <div class="flex justify-between items-center ">
                 <div>

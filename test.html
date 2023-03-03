@@ -21,38 +21,11 @@
         <h1 class="text-4xl font-bold">AI Universe Hub</h1>
         <button class="btn bg-red-500 hover:bg-red-600 border-none mt-4">Sort By Date</button>
     </header>
-    <main>
-        <!--! card container start  -->
-        <section class="mt-4 w-[90%] mx-auto">
-            <div id="card-container" class="md:grid grid-cols-3 gap-6">
-
-            </div>
-
-            <div class="flex justify-center">
-                <button id="show-all-btn"
-                    class="btn bg-red-500 hover:bg-red-600 border-none mt-8 mb-6 mx-auto hidden">Show
-                    All</button>
-            </div>
-            <div class="flex justify-center items-center">
-                <progress id="loading" class="progress w-56 hidden"></progress>
-            </div>
-
-
-        </section>
-        <!--! card container end  -->
-
-        <section>
-            <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-            <div class="modal rounded-md">
-                <div id="details-modal" class="w-[60%] custom-modal-width relative">
-
-                </div>
-            </div>
-
-
-
-        </section>
-    </main>
+    <div class="grid grid-cols-3">
+        <div class="order-last">01</div>
+        <div>02</div>
+        <div>03</div>
+    </div>
 
     <!-- script  -->
     <script src="./test.js"></script>

@@ -13,10 +13,11 @@
     <script src="https://kit.fontawesome.com/8d318c79f1.js" crossorigin="anonymous"></script>
 </head>
 <style>
-    .custom-modal-width {
+    /* .custom-modal-width {
         width: 80% !important;
         max-height: calc(100vh-5rem);
-    }
+        overflow: scroll;
+    } */
 </style>
 
 <body onload="fetchAllData()">
@@ -32,7 +33,7 @@
             </div>
 
             <div class="flex justify-center">
-                <button id="show-all-btn"
+                <button onclick="showAllData()" id="show-all-btn"
                     class="btn bg-red-500 hover:bg-red-600 border-none mt-8 mb-6 mx-auto hidden">Show
                     All</button>
             </div>
@@ -47,7 +48,7 @@
         <section>
             <input type="checkbox" id="my-modal-3" class="modal-toggle" />
             <div class="modal">
-                <div id="details-modal" class="custom-modal-width relative">
+                <div id="details-modal" class="modal-box w-11/12 max-w-5xl relative">
 
                 </div>
             </div>
