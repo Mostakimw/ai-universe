@@ -27,7 +27,6 @@ const showAllData = () => {
 //! function for display all data
 const displayLoadData = (allAis) => {
   const cardContainer = document.getElementById("card-container");
-  console.log(allAis[0]);
   cardContainer.innerHTML = "";
   allAis.forEach((singleData) => {
     cardContainer.innerHTML += `
@@ -35,18 +34,18 @@ const displayLoadData = (allAis) => {
           <div>
               <img src=${singleData.image} class="rounded-xl h-[260px]" />
           </div>
-          <div class="mt-4">
+          <div class="my-4">
               <h2 class="text-2xl font-semibold">Features</h2>
               <p>1. ${singleData.features[0]}</p>
               <p>2. ${singleData.features[1]}</p>
               <p>3. ${singleData.features[2]}</p>
           </div>
+          <hr class="border">
           <div class="p-0 mt-4 flex justify-between items-center">
               <div>
                   <h2 class="text-3xl font-semibold">${singleData.name}</h2>
                   <p>${singleData.published_in}</p>
               </div>
-              <hr>
               <div class="card-actions">
                 <label onclick="loadSingleData('${singleData.id}')" id="show-btn" for="my-modal-3" class="btn bg-white border-none hover:bg-white"><i class="fa-solid fa-arrow-right text-red-500 text-2xl"></i></label>
                 
@@ -105,24 +104,18 @@ const displaySingleData = (data) => {
               <h2 class="text-2xl font-semibold">${data.description}</h2>
             </div>
             <div class="flex justify-between max-md:flex-col max-md:items-center my-5 gap-4 mx-auto">
-                <p class="w-48 bg-gray-50	 p-2  text-xl font-bold rounded">${
-                  data.pricing[0].price && data.pricing[0].plan
-                } </p>
-                <p class=" w-48 bg-gray-50	 p-2  text-xl font-bold rounded">${
-                  data.pricing[1].price
-                }<br>${data.pricing[1].plan}</p>
-                <p class="w-48 bg-gray-50	 p-2  text-xl font-bold rounded">${
-                  data.pricing[2].price
-                }<br>${data.pricing[2].plan}</p>
+                <p class="w-48 bg-gray-50 text-[#03A30A] p-2 text-xl font-bold rounded">${data.pricing[0].price} <br>${data.pricing[0].plan} </p>
+                <p class=" w-48 bg-gray-50 text-[#F28927] p-2  text-xl font-bold rounded">${data.pricing[1].price}<br>${data.pricing[1].plan}</p>
+                <p class="w-48 bg-gray-50	text-[#EB5757] p-2  text-xl font-bold rounded">${data.pricing[2].price}<br>${data.pricing[2].plan}</p>
             </div>
-            <div class="flex justify-between items-center ">
+            <div class="flex justify-between gap-5 max-md:flex-col max-md:items-center items-center ">
                 <div>
-                    <h3 class="text-3xl font-semibold">Feature</h3>
+                    <h3 class="text-3xl font-semibold mb-3">Feature</h3>
                     <div id="feature-name">
                     </div>
                 </div>
               <div>
-                  <h3 class="text-3xl font-semibold">Integrations</h3>
+                  <h3 class="text-3xl font-semibold mb-3">Integrations</h3>
                   <div id="integration-name">
                   </div>
               </div>
@@ -132,9 +125,7 @@ const displaySingleData = (data) => {
             
             <img src=${data.image_link[0]} class="rounded-xl" />
             <div class="text-center mt-5 px-4">
-              <h3 class="text-3xl font-semibold">${
-                data.input_output_examples[0].input
-              }</h3>
+              <h3 class="text-3xl font-semibold">${data.input_output_examples[0].input}</h3>
               <p class="mt-2">${data.input_output_examples[0].output}</p>
             </div>
             
@@ -148,7 +139,6 @@ const displaySingleData = (data) => {
 };
 
 //! display feature names
-
 function displayFeatureNames(data) {
   let featureHtml = "";
   let count = 1;
@@ -161,16 +151,10 @@ function displayFeatureNames(data) {
 }
 
 //! display integrations
-//! display integrations
 function displayIntegrationsName(data) {
   let integrationHtml = "";
   let count = 1;
   for (const integration of data.integrations) {
-    // const integrationName = integration;
-    // checkIntegrations =
-    //   integration == "null"
-    //     ? "No integrations"
-    //     : (integrationHtml += `<p>${count}. ${integration}</p>`);
     if (integration) {
       integrationHtml += `<p>${count}. ${integration}</p>`;
     } else {

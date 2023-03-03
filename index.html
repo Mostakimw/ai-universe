@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -12,13 +12,6 @@
     <!-- fontawesome cdn  -->
     <script src="https://kit.fontawesome.com/8d318c79f1.js" crossorigin="anonymous"></script>
 </head>
-<style>
-    /* .custom-modal-width {
-        width: 80% !important;
-        max-height: calc(100vh-5rem);
-        overflow: scroll;
-    } */
-</style>
 
 <body onload="fetchAllData()">
     <header class="text-center mt-6">
@@ -29,7 +22,7 @@
         <!--! card container start  -->
         <section class="mt-4 w-[90%] mx-auto">
             <div id="card-container" class="md:grid grid-cols-3 gap-6">
-
+                <!-- showing all single data in this div  -->
             </div>
 
             <div class="flex justify-center">
@@ -37,10 +30,11 @@
                     class="btn bg-red-500 hover:bg-red-600 border-none mt-8 mb-6 mx-auto hidden">Show
                     All</button>
             </div>
+
+            <!-- loader -->
             <div class="flex justify-center items-center">
                 <progress id="loading" class="progress w-56 hidden"></progress>
             </div>
-
 
         </section>
         <!--! card container end  -->
