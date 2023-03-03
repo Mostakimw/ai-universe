@@ -56,19 +56,19 @@ const loadSingleData = async (id) => {
 
 const displaySingleData = (data) => {
   console.log(data);
-  console.log(data.pricing[0]);
+  console.log(data.input_output_examples[0]);
   const details = document.getElementById("details-modal");
   details.innerHTML = `
       <label for="my-modal-3" class="btn btn-sm btn-circle bg-red-400 border-none text-white absolute right-[-1.1rem] top-[-1.1rem]">✕</label>
-      <div class="grid grid-cols-2 gap-6 p-6 bg-red-300 rounded-md">
-        <div class="w-full px-4">
+      <div class="grid grid-cols-2 gap-6 p-20 bg-base-100 rounded-md items-center">
+        <div class="w-full p-6 border border-red-500 bg-red-100	rounded-md">
             <div>
               <h2 class="text-2xl font-semibold">${data.description}</h2>
             </div>
             <div class="flex justify-between my-5 gap-4">
-                <p class="w-48 bg-white p-2 text-xl font-bold rounded">${data.pricing[0].price}<br>${data.pricing[0].plan} </p>
-                <p class=" w-48 bg-white p-2 text-xl font-bold rounded">${data.pricing[1].price}<br>${data.pricing[1].plan}</p>
-                <p class="w-48 bg-white p-2 text-xl font-bold rounded">${data.pricing[2].price}<br>${data.pricing[2].plan}</p>
+                <p class="w-48 bg-gray-50	 p-2 text-xl font-bold rounded">${data.pricing[0].price}<br>${data.pricing[0].plan} </p>
+                <p class=" w-48 bg-gray-50	 p-2 text-xl font-bold rounded">${data.pricing[1].price}<br>${data.pricing[1].plan}</p>
+                <p class="w-48 bg-gray-50	 p-2 text-xl font-bold rounded">${data.pricing[2].price}<br>${data.pricing[2].plan}</p>
             </div>
             <div class="flex justify-between items-center ">
                 <div>
@@ -85,7 +85,11 @@ const displaySingleData = (data) => {
           </div>
           <div class="w-full">
             
-            <img src=${data.image_link[0]} class="rounded-xl h-[260px]" />
+            <img src=${data.image_link[0]} class="rounded-xl" />
+            <div class="text-center mt-5 px-4">
+              <h3 class="text-3xl font-semibold">${data.input_output_examples[0].input}</h3>
+              <p class="mt-2">${data.input_output_examples[0].output}</p>
+            </div>
             
           </div>
       </div>
