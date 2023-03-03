@@ -5,10 +5,12 @@ const fetchAllData = () => {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      displayLoadData(data.data.tools.slice(0, 3));
+      displayLoadData(data.data.tools.slice(0, 6));
       loadingDisplay(false);
     });
 };
+
+//! show all button handler
 const showAllData = () => {
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
   loadingDisplay(true);
@@ -69,7 +71,9 @@ const loadSingleData = async (id) => {
 
 const displaySingleData = (data) => {
   console.log(data);
-  console.log(data.input_output_examples[0]);
+  feature_name = data["features"]["1"]["feature_name"];
+  console.log(feature_name);
+
   const details = document.getElementById("details-modal");
   details.innerHTML = `
       <label for="my-modal-3" class="btn btn-sm btn-circle bg-red-400 border-none text-white absolute right-2 top-2">✕</label>
@@ -86,13 +90,13 @@ const displaySingleData = (data) => {
             <div class="flex justify-between items-center ">
                 <div>
                     <h3 class="text-3xl font-semibold">Feature</h3>
-                    
+                    <div id="feature-name">
+                    </div>
                 </div>
               <div>
                   <h3 class="text-3xl font-semibold">Integrations</h3>
-                  <p class="color-[#585858]">helo</p>
-                  <p>helo</p>
-                  <p>helo</p>
+                  <div id="integration-name">
+                  </div>
               </div>
             </div>
           </div>
@@ -107,9 +111,39 @@ const displaySingleData = (data) => {
           </div>
       </div>
     `;
+  const featureDiv = document.getElementById("feature-name");
+  featureDiv.innerHTML = displayFeatureNames(data);
+  const integrationDiv = document.getElementById("integration-name");
+  integrationDiv.innerHTML = displayIntegrationsName(data);
 };
 
-//! show all button handler
+//! display feature names
+
+function displayFeatureNames(data) {
+  let featureHtml = "";
+  let count = 1;
+  for (const feature in data.features) {
+    const featureName = data.features[feature].feature_name;
+    featureHtml += `<p>${count}. ${featureName}</p>`;
+    count++;
+  }
+  return featureHtml;
+}
+
+//! display integrations
+function displayIntegrationsName(data) {
+  let integrationHtml = "";
+  let count = 1;
+  for (const integration of data.integrations) {
+    // const integrationName = integration;
+    const checkIntegrations =
+      integration == "null"
+        ? "No integrations"
+        : "integrationHtml += `<p>${count}. ${integrationName}</p>`;";
+    count++;
+  }
+  return checkIntegrations;
+}
 
 //! spinner when loading
 const loadingDisplay = (isLoading) => {
