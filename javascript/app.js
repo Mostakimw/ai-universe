@@ -108,14 +108,14 @@ const displaySingleData = (data) => {
                 <p class=" w-48 bg-gray-50 text-[#F28927] p-2  text-xl font-bold rounded">${data.pricing[1].price}<br>${data.pricing[1].plan}</p>
                 <p class="w-48 bg-gray-50	text-[#EB5757] p-2  text-xl font-bold rounded">${data.pricing[2].price}<br>${data.pricing[2].plan}</p>
             </div>
-            <div class="flex justify-between gap-5 max-md:flex-col max-md:items-center items-center ">
+            <div class="md:flex justify-between gap-5">
                 <div>
                     <h3 class="text-3xl font-semibold mb-3">Feature</h3>
                     <div id="feature-name">
                     </div>
                 </div>
               <div>
-                  <h3 class="text-3xl font-semibold mb-3">Integrations</h3>
+                  <h3 class="text-3xl font-semibold mb-3 max-md:mt-3">Integrations</h3>
                   <div id="integration-name">
                   </div>
               </div>
