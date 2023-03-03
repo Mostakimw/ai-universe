@@ -136,10 +136,10 @@ function displayIntegrationsName(data) {
   let count = 1;
   for (const integration of data.integrations) {
     // const integrationName = integration;
-    const checkIntegrations =
+    checkIntegrations =
       integration == "null"
         ? "No integrations"
-        : "integrationHtml += `<p>${count}. ${integrationName}</p>`;";
+        : (integrationHtml += `<p>${count}. ${integration}</p>`);
     count++;
   }
   return checkIntegrations;
