@@ -29,7 +29,6 @@ const displayLoadData = (allAis) => {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   allAis.forEach((singleData) => {
-    console.log(singleData);
     cardContainer.innerHTML += `
       <div class="card w-full bg-base-100 p-8 shadow-xl border mb-6">
           <div>
@@ -91,12 +90,11 @@ const loadSingleData = async (id) => {
   const data = await res.json();
   displaySingleData(data.data);
 };
+
 //! single data showing when modal opened
 const displaySingleData = (data) => {
   const { accuracy, description, image_link, input_output_examples, pricing } =
     data;
-  console.log(pricing);
-  console.log(data);
   feature_name = data["features"]["1"]["feature_name"];
   const details = document.getElementById("details-modal");
   details.innerHTML = `
