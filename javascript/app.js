@@ -29,25 +29,26 @@ const displayLoadData = (allAis) => {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   allAis.forEach((singleData) => {
+    const { image, features, published_in, name, id } = singleData;
     cardContainer.innerHTML += `
       <div class="card w-full bg-base-100 p-8 shadow-xl border mb-6">
           <div>
-              <img src=${singleData.image} class="rounded-xl h-[260px]" />
+              <img src=${image} class="rounded-xl h-[260px]" />
           </div>
           <div class="my-4">
               <h2 class="text-2xl font-semibold">Features</h2>
-              <p>1. ${singleData.features[0]}</p>
-              <p>2. ${singleData.features[1]}</p>
-              <p>3. ${singleData.features[2]}</p>
+              <p>1. ${features[0]}</p>
+              <p>2. ${features[1]}</p>
+              <p>3. ${features[2]}</p>
           </div>
           <hr class="border">
           <div class="p-0 mt-4 flex justify-between items-center">
               <div>
-                  <h2 class="text-3xl font-semibold">${singleData.name}</h2>
-                  <p>${singleData.published_in}</p>
+                  <h2 class="text-3xl font-semibold">${name}</h2>
+                  <p><i class="fa-regular fa-calendar-days pr-2"></i>${published_in}</p>
               </div>
               <div class="card-actions">
-                <label onclick="loadSingleData('${singleData.id}')" id="show-btn" for="my-modal-3" class="btn bg-white border-none hover:bg-white"><i class="fa-solid fa-arrow-right text-red-500 text-2xl"></i></label>
+                <label onclick="loadSingleData('${id}')" id="show-btn" for="my-modal-3" class="btn bg-white border-none hover:bg-white"><i class="fa-solid fa-arrow-right text-red-500 text-2xl"></i></label>
                 
               </div>
           </div>
