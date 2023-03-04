@@ -1,4 +1,4 @@
-//! fetch all data from server
+//! fetch all ai data from server
 const fetchAllData = () => {
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
   loadingDisplay(true);
@@ -10,7 +10,7 @@ const fetchAllData = () => {
     });
 };
 
-//! show all button handler
+//! See more button handler
 const showAllData = () => {
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
   loadingDisplay(true);
@@ -24,7 +24,7 @@ const showAllData = () => {
   loadMoreButton.style.display = "none";
 };
 
-//! function for display all data
+//! function for display all ais
 const displayLoadData = (allAis) => {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
@@ -48,8 +48,7 @@ const displayLoadData = (allAis) => {
                   <p><i class="fa-regular fa-calendar-days pr-2"></i>${published_in}</p>
               </div>
               <div class="card-actions">
-                <label onclick="loadSingleData('${id}')" id="show-btn" for="my-modal-3" class="btn bg-white border-none hover:bg-white"><i class="fa-solid fa-arrow-right text-red-500 text-2xl"></i></label>
-                
+                <label onclick="loadSingleData('${id}')" id="show-btn" for="my-modal-3" class="btn bg-white border-none hover:bg-white"><i class="fa-solid fa-arrow-right text-red-500 text-2xl"></i></label>                
               </div>
           </div>
       </div>
@@ -68,6 +67,7 @@ const sortByDate = () => {
       loadingDisplay(false);
     });
 };
+
 //! display sort by date
 const displaySortByDate = (data) => {
   custom = (a, b) => {
@@ -84,7 +84,7 @@ const displaySortByDate = (data) => {
   loadMoreButton.style.display = "none";
 };
 
-//! single data details fetch
+//! single data fetch
 const loadSingleData = async (id) => {
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
   const res = await fetch(url);
