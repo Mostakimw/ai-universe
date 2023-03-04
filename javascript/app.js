@@ -120,13 +120,13 @@ const displaySingleData = (data) => {
               <h2 class="text-2xl font-semibold">${description}</h2>
             </div>
             <div class="flex justify-between max-md:flex-col max-md:items-center my-5 gap-4 mx-auto">
-                <div class="md:h-28 md:flex justify-center items-center bg-gray-50 px-4 rounded"><p class="text-[#03A30A] text-xl font-bold">${
+                <div class="md:h-28 w-full md:flex justify-center items-center bg-gray-50 px-4 py-2 rounded"><p class="text-[#03A30A] text-xl font-bold">${
                   pricing ? pricing[0].price : "Free Of Cost"
                 } <br>${pricing ? pricing[0].plan : ""} </p></div>
-                <div class="md:h-28 md:flex justify-center items-center bg-gray-50 px-4 rounded"><p class="text-[#F28927] text-xl font-bold">${
+                <div class="md:h-28 w-full md:flex justify-center items-center bg-gray-50 px-4 py-2 rounded"><p class="text-[#F28927] text-xl font-bold">${
                   pricing ? pricing[1].price : "Free Of Cost"
                 } <br>${pricing ? pricing[1].plan : ""} </p></div>
-                <div class="md:h-28 md:flex justify-center items-center bg-gray-50 px-4 rounded"><p class="text-[#EB5757] text-xl font-bold">${
+                <div class="md:h-28 w-full md:flex justify-center items-center bg-gray-50 px-4 py-2 rounded"><p class="text-[#EB5757] text-xl font-bold">${
                   pricing ? pricing[2].price : "Free Of Cost"
                 } <br>${pricing ? pricing[2].plan : ""} </p></div>
                 
