@@ -147,9 +147,11 @@ const displaySingleData = (data) => {
             
             <div class="relative">
               <img src=${image_link[0]} class="rounded-xl"/>
-              <p class="bg-red-500 p-2 max-w-fit text-white rounded-md absolute right-2 top-2 ">${
-                accuracy.score ? accuracy.score * 100 + "% accuracy" : ""
-              }</p>
+              <p class="bg-red-500 p-2 max-w-fit text-white rounded-md absolute right-2 top-2 ${
+                !accuracy.score && "hidden"
+              }">${
+    accuracy.score ? accuracy.score * 100 + "% accuracy" : ""
+  }</p>
             </div>
             <div class="text-center mt-5 md:px-4">
               <h3 class="text-3xl font-semibold">${
