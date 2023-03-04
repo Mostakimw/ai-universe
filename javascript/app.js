@@ -33,6 +33,7 @@ const displaySortByDate = (data) => {
     return 0;
   };
   data.sort(custom);
+
   displayLoadData(data);
   const loadMoreButton = document.getElementById("show-all-btn");
   loadMoreButton.style.display = "none";
@@ -62,7 +63,7 @@ const displayLoadData = (allAis) => {
     cardContainer.innerHTML += `
       <div class="card w-full bg-base-100 p-8 shadow-xl border mb-6">
           <div>
-              <img src=${image} class="rounded-xl h-[260px]" />
+              <img src=${image} class="rounded-xl md:h-[230px]" />
           </div>
           <div class="my-4">
               <h2 class="text-2xl font-semibold">Features</h2>
