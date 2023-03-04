@@ -29,6 +29,7 @@ const displayLoadData = (allAis) => {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   allAis.forEach((singleData) => {
+    console.log(singleData);
     cardContainer.innerHTML += `
       <div class="card w-full bg-base-100 p-8 shadow-xl border mb-6">
           <div>
@@ -57,7 +58,6 @@ const displayLoadData = (allAis) => {
 };
 
 //! sort by date fetch function
-
 const sortByDate = () => {
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
   loadingDisplay(true);
@@ -70,7 +70,6 @@ const sortByDate = () => {
 };
 //! display sort by date
 const displaySortByDate = (data) => {
-  // console.log(data);
   custom = (a, b) => {
     let dateA = new Date(a.published_in);
     let dateB = new Date(b.published_in);
@@ -94,26 +93,29 @@ const loadSingleData = async (id) => {
 };
 //! single data showing when modal opened
 const displaySingleData = (data) => {
+  const { accuracy, description, image_link, input_output_examples, pricing } =
+    data;
+  console.log(pricing);
   console.log(data);
   feature_name = data["features"]["1"]["feature_name"];
   const details = document.getElementById("details-modal");
   details.innerHTML = `
-      <label for="my-modal-3" class="btn btn-sm btn-circle bg-red-400 border-none text-white absolute right-2 top-2">✕</label>
+      <label for="my-modal-3" class="btn btn-sm btn-circle bg-red-400 border-none text-white absolute right-2 top-2 z-10">✕</label>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:p-12 bg-base-100 rounded-md items-center">
         <div class="max-sm:order-last w-full p-6 border border-red-500 bg-red-100	rounded-md mb-6">
             <div>
-              <h2 class="text-2xl font-semibold">${data.description}</h2>
+              <h2 class="text-2xl font-semibold">${description}</h2>
             </div>
             <div class="flex justify-between max-md:flex-col max-md:items-center my-5 gap-4 mx-auto">
-                <p class="bg-gray-50 text-[#03A30A] p-2 text-xl font-bold rounded">${
-                  data.pricing[0].price
-                } <br>${data.pricing[0].plan} </p>
-                <p class="bg-gray-50 text-[#F28927] p-2  text-xl font-bold rounded">${
-                  data.pricing[1].price
-                }<br>${data.pricing[1].plan}</p>
-                <p class="bg-gray-50	text-[#EB5757] p-2  text-xl font-bold rounded">${
-                  data.pricing[2].price
-                }<br>${data.pricing[2].plan}</p>
+                <p class="w-full bg-gray-50 text-[#03A30A] p-2 text-xl font-bold rounded">${
+                  pricing ? pricing[0].price : "Free Of Cost"
+                } <br>${pricing ? pricing[0].plan : ""} </p>
+                <p class="w-full bg-gray-50 text-[#F28927] p-2  text-xl font-bold rounded">${
+                  pricing ? pricing[1].price : "Free Of Cost"
+                } <br>${pricing ? pricing[1].plan : ""}</p>
+                <p class="w-full bg-gray-50	text-[#EB5757] p-2  text-xl font-bold rounded">${
+                  pricing ? pricing[2].price : "Free Of Cost"
+                } <br>${pricing ? pricing[2].plan : ""}</p>
             </div>
             <div class="md:flex justify-between gap-5">
                 <div>
@@ -131,16 +133,22 @@ const displaySingleData = (data) => {
           <div class="w-full">
             
             <div class="relative">
-              <img src=${data.image_link[0]} class="rounded-xl"/>
+              <img src=${image_link[0]} class="rounded-xl"/>
               <p class="bg-red-500 p-2 max-w-fit text-white rounded-md absolute right-2 top-2">${
-                data.accuracy.score * 100
+                accuracy.score * 100
               }% accuracy</p>
             </div>
-            <div class="text-center mt-5 px-4">
+            <div class="text-center mt-5 md:px-4">
               <h3 class="text-3xl font-semibold">${
-                data.input_output_examples[0].input
+                input_output_examples
+                  ? input_output_examples[0].input
+                  : "Can you give me any example?"
               }</h3>
-              <p class="mt-2">${data.input_output_examples[0].output}</p>
+              <p class="mt-2">${
+                input_output_examples
+                  ? input_output_examples[0].output
+                  : "No! Not Yet! Take a break!!!"
+              }</p>
             </div>
             
           </div>
@@ -168,14 +176,14 @@ function displayFeatureNames(data) {
 function displayIntegrationsName(data) {
   let integrationHtml = "";
   let count = 1;
-  for (const integration of data.integrations) {
-    if (integration) {
+  if (data.integrations) {
+    data.integrations.forEach((integration) => {
       integrationHtml += `<p>${count}. ${integration}</p>`;
-    } else {
-      integrationHtml = "No data Found";
-    }
-    count++;
+    });
+  } else {
+    integrationHtml = "No data Found";
   }
+  count++;
   return integrationHtml;
 }
 
