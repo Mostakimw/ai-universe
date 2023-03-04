@@ -10,52 +10,6 @@ const fetchAllData = () => {
     });
 };
 
-//! See more button handler
-const showAllData = () => {
-  const url = `https://openapi.programming-hero.com/api/ai/tools`;
-  loadingDisplay(true);
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      displayLoadData(data.data.tools);
-      loadingDisplay(false);
-    });
-  const loadMoreButton = document.getElementById("show-all-btn");
-  loadMoreButton.style.display = "none";
-};
-
-//! function for display all ais
-const displayLoadData = (allAis) => {
-  const cardContainer = document.getElementById("card-container");
-  cardContainer.innerHTML = "";
-  allAis.forEach((singleData) => {
-    const { image, features, published_in, name, id } = singleData;
-    cardContainer.innerHTML += `
-      <div class="card w-full bg-base-100 p-8 shadow-xl border mb-6">
-          <div>
-              <img src=${image} class="rounded-xl h-[260px]" />
-          </div>
-          <div class="my-4">
-              <h2 class="text-2xl font-semibold">Features</h2>
-              <p>1. ${features[0]}</p>
-              <p>2. ${features[1]}</p>
-              <p>3. ${features[2]}</p>
-          </div>
-          <hr class="border">
-          <div class="p-0 mt-4 flex justify-between items-center">
-              <div>
-                  <h2 class="text-3xl font-semibold">${name}</h2>
-                  <p><i class="fa-regular fa-calendar-days pr-2"></i>${published_in}</p>
-              </div>
-              <div class="card-actions">
-                <label onclick="loadSingleData('${id}')" id="show-btn" for="my-modal-3" class="btn bg-white border-none hover:bg-white"><i class="fa-solid fa-arrow-right text-red-500 text-2xl"></i></label>                
-              </div>
-          </div>
-      </div>
-    `;
-  });
-};
-
 //! sort by date fetch function
 const sortByDate = () => {
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
@@ -83,6 +37,66 @@ const displaySortByDate = (data) => {
   const loadMoreButton = document.getElementById("show-all-btn");
   loadMoreButton.style.display = "none";
 };
+
+//! See more button handler
+const showAllData = () => {
+  const url = `https://openapi.programming-hero.com/api/ai/tools`;
+  loadingDisplay(true);
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      displayLoadData(data.data.tools);
+      loadingDisplay(false);
+    });
+  const loadMoreButton = document.getElementById("show-all-btn");
+  loadMoreButton.style.display = "none";
+};
+
+//! function for display all ais
+const displayLoadData = (allAis) => {
+  const cardContainer = document.getElementById("card-container");
+  cardContainer.innerHTML = "";
+  allAis.forEach((singleData) => {
+    console.log(singleData);
+    const { image, features, published_in, name, id } = singleData;
+    cardContainer.innerHTML += `
+      <div class="card w-full bg-base-100 p-8 shadow-xl border mb-6">
+          <div>
+              <img src=${image} class="rounded-xl h-[260px]" />
+          </div>
+          <div class="my-4">
+              <h2 class="text-2xl font-semibold">Features</h2>
+              <p>${features[0] ? "1. " + features[0] : ""}</p>
+              <p>${features[1] ? "2. " + features[1] : ""}</p>
+              <p>${features[2] ? "3. " + features[2] : ""}</p>
+              <p>${features[3] ? "4. " + features[3] : ""}</p>
+          </div>
+          <hr class="border">
+          <div class="p-0 mt-4 flex justify-between items-center">
+              <div>
+                  <h2 class="text-3xl font-semibold mb-2">${name}</h2>
+                  <p><i class="fa-regular fa-calendar-days pr-2"></i>
+                  ${formatDate(published_in)}
+                  </p>
+              </div>
+              <div class="card-actions">
+                <label onclick="loadSingleData('${id}')" id="show-btn" for="my-modal-3" class="btn bg-white border-none hover:bg-white"><i class="fa-solid fa-arrow-right text-red-500 text-2xl"></i></label>                
+              </div>
+          </div>
+      </div>
+    `;
+  });
+};
+
+function formatDate(publishedDate) {
+  const date = new Date(publishedDate);
+  const formattedDate = date.toLocaleDateString("en-US", {
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+  });
+  return formattedDate;
+}
 
 //! single data fetch
 const loadSingleData = async (id) => {
@@ -133,9 +147,9 @@ const displaySingleData = (data) => {
             
             <div class="relative">
               <img src=${image_link[0]} class="rounded-xl"/>
-              <p class="bg-red-500 p-2 max-w-fit text-white rounded-md absolute right-2 top-2">${
-                accuracy.score * 100
-              }% accuracy</p>
+              <p class="bg-red-500 p-2 max-w-fit text-white rounded-md absolute right-2 top-2 ">${
+                accuracy.score ? accuracy.score * 100 + "% accuracy" : ""
+              }</p>
             </div>
             <div class="text-center mt-5 md:px-4">
               <h3 class="text-3xl font-semibold">${
