@@ -1,8 +1,5 @@
-AI-universe-hub
-Private Repo Link
-Click Here to create private repo
-
-Private Repo link: https://classroom.github.com/a/dhefyS56
+<h1>AI-universe-hub</h1>
+<hr>
 
 API Links
 All data: https://openapi.programming-hero.com/api/ai/tools
